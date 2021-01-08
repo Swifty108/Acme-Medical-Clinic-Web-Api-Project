@@ -4,18 +4,11 @@ using AcmeMedicalClinicWebApi.DAL.Identity;
 using AcmeMedicalClinicWebApi.DAL.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AcmeMedicalClinicWebApi.Web
 {
@@ -44,11 +37,25 @@ namespace AcmeMedicalClinicWebApi.Web
                 options.Password.RequireLowercase = false;
                 options.Password.RequireUppercase = false;
             })
-               
+
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders()
             .AddDefaultUI()
             .AddRoles<IdentityRole>();
+
+            services.AddIdentityCore<Employee>()
+            .AddRoles<IdentityRole>()
+            .AddClaimsPrincipalFactory<UserClaimsPrincipalFactory<Employee, IdentityRole>>()
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders()
+            .AddDefaultUI();
+
+            services.AddIdentityCore<Patient>()
+            .AddRoles<IdentityRole>()
+            .AddClaimsPrincipalFactory<UserClaimsPrincipalFactory<Patient, IdentityRole>>()
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders()
+            .AddDefaultUI();
 
             services.AddControllers();
             services.AddTransient<IDbInitializer, DbInitializer>();
