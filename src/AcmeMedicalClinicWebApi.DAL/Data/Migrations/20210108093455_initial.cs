@@ -78,7 +78,7 @@ namespace AcmeMedicalClinicWebApi.DAL.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Appointment",
+                name: "Appointments",
                 columns: table => new
                 {
                     AppointmentId = table.Column<int>(nullable: false)
@@ -90,9 +90,9 @@ namespace AcmeMedicalClinicWebApi.DAL.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Appointment", x => x.AppointmentId);
+                    table.PrimaryKey("PK_Appointments", x => x.AppointmentId);
                     table.ForeignKey(
-                        name: "FK_Appointment_AspNetUsers_PatientId",
+                        name: "FK_Appointments_AspNetUsers_PatientId",
                         column: x => x.PatientId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -206,7 +206,7 @@ namespace AcmeMedicalClinicWebApi.DAL.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Record",
+                name: "Records",
                 columns: table => new
                 {
                     RecordId = table.Column<int>(nullable: false)
@@ -217,9 +217,9 @@ namespace AcmeMedicalClinicWebApi.DAL.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Record", x => x.RecordId);
+                    table.PrimaryKey("PK_Records", x => x.RecordId);
                     table.ForeignKey(
-                        name: "FK_Record_AspNetUsers_PatientId",
+                        name: "FK_Records_AspNetUsers_PatientId",
                         column: x => x.PatientId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -248,8 +248,8 @@ namespace AcmeMedicalClinicWebApi.DAL.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Appointment_PatientId",
-                table: "Appointment",
+                name: "IX_Appointments_PatientId",
+                table: "Appointments",
                 column: "PatientId");
 
             migrationBuilder.CreateIndex(
@@ -303,15 +303,15 @@ namespace AcmeMedicalClinicWebApi.DAL.Data.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Record_PatientId",
-                table: "Record",
+                name: "IX_Records_PatientId",
+                table: "Records",
                 column: "PatientId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Appointment");
+                name: "Appointments");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
@@ -332,7 +332,7 @@ namespace AcmeMedicalClinicWebApi.DAL.Data.Migrations
                 name: "LabResult");
 
             migrationBuilder.DropTable(
-                name: "Record");
+                name: "Records");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AcmeMedicalClinicWebApi.DAL.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210108090721_initial")]
+    [Migration("20210108093455_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -134,7 +134,7 @@ namespace AcmeMedicalClinicWebApi.DAL.Data.Migrations
 
                     b.HasIndex("PatientId");
 
-                    b.ToTable("Appointment");
+                    b.ToTable("Appointments");
                 });
 
             modelBuilder.Entity("AcmeMedicalClinicWebApi.DAL.Models.LabOrder", b =>
@@ -206,7 +206,7 @@ namespace AcmeMedicalClinicWebApi.DAL.Data.Migrations
 
                     b.HasIndex("PatientId");
 
-                    b.ToTable("Record");
+                    b.ToTable("Records");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

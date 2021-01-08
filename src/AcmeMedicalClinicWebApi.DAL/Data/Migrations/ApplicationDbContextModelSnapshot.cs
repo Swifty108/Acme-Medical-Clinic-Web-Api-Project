@@ -132,7 +132,7 @@ namespace AcmeMedicalClinicWebApi.DAL.Data.Migrations
 
                     b.HasIndex("PatientId");
 
-                    b.ToTable("Appointment");
+                    b.ToTable("Appointments");
                 });
 
             modelBuilder.Entity("AcmeMedicalClinicWebApi.DAL.Models.LabOrder", b =>
@@ -204,7 +204,7 @@ namespace AcmeMedicalClinicWebApi.DAL.Data.Migrations
 
                     b.HasIndex("PatientId");
 
-                    b.ToTable("Record");
+                    b.ToTable("Records");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
