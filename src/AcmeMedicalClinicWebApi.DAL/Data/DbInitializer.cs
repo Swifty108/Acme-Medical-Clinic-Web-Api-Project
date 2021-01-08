@@ -37,6 +37,7 @@ namespace AcmeMedicalClinicWebApi.DAL.Data
                             {
                                 FirstName = "Emily",
                                 LastName = "Smith",
+                                UserName = "emily.smith@patient.com",
                                 Email = "emily.smith@patient.com",
                                 StreetAddress = "456 Planter Street",
                                 City = "Atlanta",
@@ -116,11 +117,11 @@ namespace AcmeMedicalClinicWebApi.DAL.Data
 
                                     if (user.Email.Contains("employee"))
                                     {
-                                        await userManager.AddToRoleAsync(user, "Employee");
+                                        await userManager.AddToRoleAsync(user as Employee, "Employee");
                                     }
                                     else if (user.Email.Contains("patient"))
                                     {
-                                        await userManager.AddToRoleAsync(user, "Patient");
+                                        await userManager.AddToRoleAsync(user as Patient, "Patient");
                                     }
                                 }                          
                             }

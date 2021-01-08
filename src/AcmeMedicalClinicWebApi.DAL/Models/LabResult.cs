@@ -4,7 +4,7 @@ namespace AcmeMedicalClinicWebApi.DAL.Models
 {
     public class LabResult
     {
-        public int Id { get; set; }
+        public int LabResultId { get; set; }
         public string Notes { get; set; }
         public DateTime ResultsDate { get; set; }
         public int LabOrderId { get; set; }

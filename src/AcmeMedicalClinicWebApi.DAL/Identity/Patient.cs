@@ -8,8 +8,8 @@ namespace AcmeMedicalClinicWebApi.DAL.Models
     {
         public string InsuranceName { get; set; }
         public string InsuranceNumber { get; set; }
-        public IEnumerable<Appointment> Appointments { get; set; }
-        public IEnumerable<LabOrder> LabOrders { get; set; }
-        public IEnumerable<Record> Records { get; set; }
+        public ICollection<Appointment> Appointments { get; set; }
+        public ICollection<LabOrder> LabOrders { get; set; }
+        public ICollection<Record> Records { get; set; }
     }
 }
