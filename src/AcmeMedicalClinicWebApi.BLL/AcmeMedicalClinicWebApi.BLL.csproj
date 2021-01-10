@@ -10,10 +10,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\" />
-    <Folder Include="Handlers\Commands\" />
-    <Folder Include="Handlers\Queries\" />
-    <Folder Include="Queries\" />
+    <Folder Include="CQRS\Commands\" />
+    <Folder Include="CQRS\Handlers\Commands\" />
+    <Folder Include="CQRS\Handlers\Queries\" />
+    <Folder Include="CQRS\" />
+    <Folder Include="CQRS\Queries\" />
   </ItemGroup>
 
 </Project>

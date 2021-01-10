@@ -1,3 +1,4 @@
+using AcmeApartments.DAL.Data;
 using AcmeApartments.DAL.Interfaces;
 using AcmeMedicalClinicWebApi.DAL.Data;
 using AcmeMedicalClinicWebApi.DAL.Identity;
@@ -60,6 +61,8 @@ namespace AcmeMedicalClinicWebApi.Web
 
             services.AddControllers();
             services.AddTransient<IDbInitializer, DbInitializer>();
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
+
             services.AddMediatR(typeof(Startup));
             services.AddHttpContextAccessor();
         }
