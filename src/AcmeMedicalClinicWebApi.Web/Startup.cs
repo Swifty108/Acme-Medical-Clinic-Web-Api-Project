@@ -2,6 +2,7 @@ using AcmeApartments.DAL.Interfaces;
 using AcmeMedicalClinicWebApi.DAL.Data;
 using AcmeMedicalClinicWebApi.DAL.Identity;
 using AcmeMedicalClinicWebApi.DAL.Models;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -59,6 +60,7 @@ namespace AcmeMedicalClinicWebApi.Web
 
             services.AddControllers();
             services.AddTransient<IDbInitializer, DbInitializer>();
+            services.AddMediatR(typeof(Startup));
             services.AddHttpContextAccessor();
         }
 
