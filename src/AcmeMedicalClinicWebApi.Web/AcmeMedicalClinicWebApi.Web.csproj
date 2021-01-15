@@ -10,7 +10,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.9" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.10" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.10" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.10">
       <PrivateAssets>all</PrivateAssets>
@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AcmeMedicalClinicWebApi.BLL\AcmeMedicalClinicWebApi.BLL.csproj" />
+    <ProjectReference Include="..\AcmeMedicalClinicWebApi.Common\AcmeMedicalClinicWebApi.Common.csproj" />
     <ProjectReference Include="..\AcmeMedicalClinicWebApi.DAL\AcmeMedicalClinicWebApi.DAL.csproj" />
   </ItemGroup>
 
