@@ -32,6 +32,9 @@ namespace AcmeMedicalClinicWebApi.BLL.Models
         [Required(ErrorMessage = "Zipcode is required")]
         public string Zipcode { get; set; }
 
+        [Required(ErrorMessage = "Phone Number is required")]
+        public string PhoneNumber { get; set; }
+
         [Required(ErrorMessage = "Insurance name is required")]
         public string InsuranceName { get; set; }
 

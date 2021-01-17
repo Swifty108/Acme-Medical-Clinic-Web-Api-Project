@@ -24,7 +24,7 @@ namespace AcmeMedicalClinicWebApi.Web.Controllers
         }
 
         [HttpPost]
-        [Route("register")]
+        [Route("registeremployee")]
         public async Task<IActionResult> RegisterEmployee([FromBody] RegisterEmployeeModel model)
         {
             var userExists = await _userService.FindUserByName(model.UserName);
@@ -48,7 +48,7 @@ namespace AcmeMedicalClinicWebApi.Web.Controllers
 
 
         [HttpPost]
-        [Route("register")]
+        [Route("registerpatient")]
         public async Task<IActionResult> RegisterPatient([FromBody] RegisterPatientModel model)
         {
             var userExists = await _userService.FindUserByName(model.UserName);

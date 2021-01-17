@@ -1,5 +1,8 @@
 using AcmeApartments.DAL.Data;
 using AcmeApartments.DAL.Interfaces;
+using AcmeMedicalClinicWebApi.BLL;
+using AcmeMedicalClinicWebApi.BLL.Interfaces;
+using AcmeMedicalClinicWebApi.Common.Services;
 using AcmeMedicalClinicWebApi.DAL.Data;
 using AcmeMedicalClinicWebApi.DAL.Identity;
 using AcmeMedicalClinicWebApi.DAL.Models;
@@ -62,6 +65,8 @@ namespace AcmeMedicalClinicWebApi.Web
             services.AddControllers();
             services.AddTransient<IDbInitializer, DbInitializer>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IAccountLogic, AccountLogic>();
 
             services.AddMediatR(typeof(Startup));
             services.AddHttpContextAccessor();
