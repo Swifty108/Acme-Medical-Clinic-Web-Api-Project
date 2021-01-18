@@ -1,5 +1,5 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
 namespace AcmeMedicalClinicWebApi.DAL.Data.Migrations
 {
@@ -83,8 +83,7 @@ namespace AcmeMedicalClinicWebApi.DAL.Data.Migrations
                 {
                     AppointmentId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Date = table.Column<DateTime>(nullable: false),
-                    Time = table.Column<DateTime>(nullable: false),
+                    AppointmentDateTime = table.Column<DateTime>(nullable: false),
                     Notes = table.Column<string>(nullable: true),
                     PatientId = table.Column<string>(nullable: false)
                 },

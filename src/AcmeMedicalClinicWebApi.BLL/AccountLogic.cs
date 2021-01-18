@@ -5,9 +5,6 @@ using AcmeMedicalClinicWebApi.DAL.Identity;
 using AcmeMedicalClinicWebApi.DAL.Models;
 using Microsoft.AspNetCore.Identity;
 using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace AcmeMedicalClinicWebApi.BLL
@@ -15,15 +12,14 @@ namespace AcmeMedicalClinicWebApi.BLL
     public class AccountLogic : IAccountLogic
     {
         private readonly UserManager<AppUser> _userManager;
+
         public AccountLogic(UserManager<AppUser> userManager)
         {
             _userManager = userManager;
         }
+
         public async Task<IdentityResult> RegisterEmployee(RegisterEmployeeModel model)
         {
-
-
-
             Employee user = new Employee()
             {
                 Email = model.Email,
@@ -38,12 +34,6 @@ namespace AcmeMedicalClinicWebApi.BLL
                 PhoneNumber = model.PhoneNumber,
                 Department = model.Department
             };
-
-            var authClaims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.Name, user.UserName),
-                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                };
 
             var result = await _userManager.CreateAsync(user, model.Password);
             await _userManager.AddToRoleAsync(user, "Employee");

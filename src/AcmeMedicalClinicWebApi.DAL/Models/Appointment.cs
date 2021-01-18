@@ -7,8 +7,7 @@ namespace AcmeMedicalClinicWebApi.DAL.Models
     public class Appointment
     {
         public int AppointmentId { get; set; }
-        public DateTime Date { get; set; }
-        public DateTime Time { get; set; }
+        public DateTime AppointmentDateTime { get; set; }
         public string Notes { get; set; }
 
         [Required]

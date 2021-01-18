@@ -1,3 +1,4 @@
+using AcmeApartments.BLL.HelperClasses;
 using AcmeApartments.DAL.Data;
 using AcmeApartments.DAL.Interfaces;
 using AcmeMedicalClinicWebApi.BLL;
@@ -6,6 +7,7 @@ using AcmeMedicalClinicWebApi.Common.Services;
 using AcmeMedicalClinicWebApi.DAL.Data;
 using AcmeMedicalClinicWebApi.DAL.Identity;
 using AcmeMedicalClinicWebApi.DAL.Models;
+using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -63,10 +65,13 @@ namespace AcmeMedicalClinicWebApi.Web
             .AddDefaultUI();
 
             services.AddControllers();
+            services.AddAutoMapper(c => c.AddProfile<AutoMappingProfile>(), typeof(Startup));
             services.AddTransient<IDbInitializer, DbInitializer>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IAccountLogic, AccountLogic>();
+            services.AddTransient<IAppointmentsLogic, AppointmentsLogic>();
+
 
             services.AddMediatR(typeof(Startup));
             services.AddHttpContextAccessor();

@@ -115,7 +115,7 @@ namespace AcmeMedicalClinicWebApi.DAL.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("Date")
+                    b.Property<DateTime>("AppointmentDateTime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Notes")
@@ -124,9 +124,6 @@ namespace AcmeMedicalClinicWebApi.DAL.Data.Migrations
                     b.Property<string>("PatientId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("Time")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("AppointmentId");
 

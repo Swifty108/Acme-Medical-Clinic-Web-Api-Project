@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+﻿using AcmeMedicalClinicWebApi.BLL.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -9,11 +10,26 @@ namespace AcmeMedicalClinicWebApi.Web.Controllers
     [ApiController]
     public class AppointmentsController : ControllerBase
     {
+        private readonly IAppointmentsLogic _appointmentsLogic;
+
+        public AppointmentsController(IAppointmentsLogic appointmentsLogic)
+        {
+            _appointmentsLogic = appointmentsLogic;
+        }
+
         // GET: api/<AppointmentsController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IActionResult> Get(string patientId)
         {
-            return new string[] { "one", "two" };
+            var appointments = await _appointmentsLogic.GetAllApointments(patientId);
+
+            if (appointments == null)
+                return NotFound();
+
+            else
+            {
+                return Ok(appointments);
+            }
         }
 
         // GET api/<AppointmentsController>/5

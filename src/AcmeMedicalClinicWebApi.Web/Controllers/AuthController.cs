@@ -37,7 +37,7 @@ namespace AcmeMedicalClinicWebApi.Web.Controllers
         [Route("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
-            var user = await _userService.FindUserByName(model.Username);
+            var user = await _userService.FindUserByName(model.UserName);
             if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
             {
                 var userRoles = await _userManager.GetRolesAsync(user);

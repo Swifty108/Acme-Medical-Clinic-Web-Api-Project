@@ -7,19 +7,19 @@ namespace AcmeApartments.DAL.Interfaces
 {
     public interface IRepository<TEntity> where TEntity : class
     {
-        IQueryable<TEntity> Get(
+        public IQueryable<TEntity> Get(
             Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             string includeProperties = "");
 
-        Task<TEntity> GetByID(object id);
+        public Task<TEntity> GetByID(object id);
 
-        Task Insert(TEntity entity);
+        public Task Insert(TEntity entity);
 
-        void Update(TEntity entityToUpdate);
+        public void Update(TEntity entityToUpdate);
 
-        Task Delete(object id);
+        public Task Delete(object id);
 
-        void Delete(TEntity entityToDelete);
+        public void Delete(TEntity entityToDelete);
     }
 }

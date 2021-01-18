@@ -7,6 +7,6 @@ namespace AcmeMedicalClinicWebApi.BLL.Interfaces
     public interface IAccountLogic
     {
         public Task<IdentityResult> RegisterEmployee(RegisterEmployeeModel model);
-        Task<IdentityResult> RegisterPatient(RegisterPatientModel model);
+        public Task<IdentityResult> RegisterPatient(RegisterPatientModel model);
     }
 }
