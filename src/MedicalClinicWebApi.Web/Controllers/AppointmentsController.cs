@@ -1,14 +1,17 @@
 ﻿using MedicalClinicWebApi.BLL.DTOs;
 using MedicalClinicWebApi.BLL.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace MedicalClinicWebApi.Web.Controllers
-{
+{ 
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class AppointmentsController : ControllerBase
     {
         private readonly IAppointmentsLogic _appointmentsLogic;
@@ -43,23 +46,37 @@ namespace MedicalClinicWebApi.Web.Controllers
 
         // POST api/<AppointmentsController>
         [HttpPost]
-        public IActionResult Post([FromBody] AppointmentDTO appointment)
+        public async Task<IActionResult> Post([FromBody] AppointmentDTO appointment)
         {
-            _appointmentsLogic.CreateAppointment(appointment);
+            await _appointmentsLogic.CreateAppointment(appointment);
 
             return Created("", appointment);
         }
 
         // PUT api/<AppointmentsController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public async Task<IActionResult> Put([FromBody] AppointmentDTO appointment)
         {
+            try
+            {
+                await _appointmentsLogic.UpdateAppointment(appointment);
+            }
+            catch (Exception e)
+            {
+
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Status = "Error", e.Message });
+            }
+
+            return Ok();
+            
         }
 
-        // DELETE api/<AppointmentsController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete]
+        public async Task<ActionResult> Delete(int appointmentId)
         {
+            await _appointmentsLogic.DeleteAppointment(appointmentId);
+
+            return Ok();
         }
     }
 }

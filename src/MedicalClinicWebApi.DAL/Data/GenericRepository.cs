@@ -57,7 +57,7 @@ namespace Apartments.DAL.Data
 
         public virtual async Task Insert(TEntity entity)
         {
-            await dbSet.AddAsync(entity);
+          await dbSet.AddAsync(entity);
         }
 
         public virtual async Task Delete(object id)

@@ -16,6 +16,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace MedicalClinicWebApi.Web
 {
@@ -72,9 +73,13 @@ namespace MedicalClinicWebApi.Web
             services.AddTransient<IAccountLogic, AccountLogic>();
             services.AddTransient<IAppointmentsLogic, AppointmentsLogic>();
 
-
             services.AddMediatR(typeof(Startup));
             services.AddHttpContextAccessor();
+
+            services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            services.AddAuthentication()
+                .AddCookie()
+                .AddJwtBearer();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -89,6 +94,7 @@ namespace MedicalClinicWebApi.Web
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

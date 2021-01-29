@@ -8,44 +8,50 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System;
 
 namespace MedicalClinicWebApi.BLL
 {
     public class AppointmentsLogic : IAppointmentsLogic
     {
-        private readonly UserManager<AppUser> _userManager;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public AppointmentsLogic(UserManager<AppUser> userManager, IUnitOfWork unitOfWork, IMapper mapper)
+        public AppointmentsLogic(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            _userManager = userManager;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
 
         public async Task<IEnumerable<Appointment>> GetAllApointments(string patientId)
         {
-            var appointments = await _unitOfWork.AppointmentRepository.Get(u => u.PatientId == patientId).ToListAsync();
+            var appointments = await _unitOfWork.AppointmentRepository.Get(filter: u => u.PatientId == patientId, includeProperties: "Patient").ToListAsync();
 
             return appointments.Count == 0 ? null : appointments;
         }
-        public void CreateAppointment(AppointmentDTO appointmentDTO)
+        public async Task CreateAppointment(AppointmentDTO appointment)
         {
-            var appointmentEntity = _mapper.Map<Appointment>(appointmentDTO);
-            _unitOfWork.AppointmentRepository.Insert(appointmentEntity);
-            _unitOfWork.Save();
+            //var apptDateTime = Convert.ToDateTime(appointmentDTO.AppointmentDateTime);
+            //appointmentDTO.AppointmentDateTime = apptDateTime;
+            var appointmentEntity = _mapper.Map<Appointment>(appointment);
+            
+            await _unitOfWork.AppointmentRepository.Insert(appointmentEntity);
+            await _unitOfWork.Save();
         }
 
-        //public async Task<IdentityResult> UpdateAppointment(RegisterEmployeeModel model)
-        //{
+        public async Task UpdateAppointment(AppointmentDTO appointment)
+        {
+            var appointmentEntity = _mapper.Map<Appointment>(appointment);
 
-        //}
+            _unitOfWork.AppointmentRepository.Update(appointmentEntity);
+            await _unitOfWork.Save();
+        }
 
-        //public async Task<IdentityResult> DeleteApointment(RegisterEmployeeModel model)
-        //{
-
-        //}
+        public async Task DeleteAppointment(int appointmentId)
+        {
+            await _unitOfWork.AppointmentRepository.Delete(appointmentId);
+            await _unitOfWork.Save();
+        }
 
 
     }

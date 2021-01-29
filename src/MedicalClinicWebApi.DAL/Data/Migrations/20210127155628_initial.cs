@@ -83,8 +83,7 @@ namespace MedicalClinicWebApi.DAL.Data.Migrations
                 {
                     AppointmentId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    AppointmentDate = table.Column<DateTime>(nullable: false),
-                    AppointmentTime = table.Column<DateTime>(nullable: false),
+                    AppointmentDateTime = table.Column<DateTime>(type: "SmallDateTime", nullable: false),
                     Notes = table.Column<string>(nullable: true),
                     PatientId = table.Column<string>(nullable: false)
                 },

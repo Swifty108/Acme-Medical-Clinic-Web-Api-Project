@@ -7,7 +7,9 @@ namespace MedicalClinicWebApi.BLL.Interfaces
 {
     public interface IAppointmentsLogic
     {
-        public void CreateAppointment(AppointmentDTO appointmentDTO);
+        public Task CreateAppointment(AppointmentDTO appointmentDTO);
+        public Task DeleteAppointment(int appointmentId);
         public Task<IEnumerable<Appointment>> GetAllApointments(string patientId);
+        public Task UpdateAppointment(AppointmentDTO appointment);
     }
 }
