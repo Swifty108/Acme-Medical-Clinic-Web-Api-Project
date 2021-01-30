@@ -1,5 +1,6 @@
 ﻿using MedicalClinicWebApi.BLL.Interfaces;
 using MedicalClinicWebApi.BLL.Models;
+using MedicalClinicWebApi.Common.Interfaces;
 using MedicalClinicWebApi.Common.Services;
 using MedicalClinicWebApi.DAL.Identity;
 using Microsoft.AspNetCore.Http;

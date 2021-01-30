@@ -17,6 +17,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using MedicalClinicWebApi.Common.Interfaces;
 
 namespace MedicalClinicWebApi.Web
 {
@@ -71,6 +72,7 @@ namespace MedicalClinicWebApi.Web
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IAccountLogic, AccountLogic>();
+            services.AddTransient<IRecordsLogic, RecordsLogic>();
             services.AddTransient<IAppointmentsLogic, AppointmentsLogic>();
 
             services.AddMediatR(typeof(Startup));

@@ -4,7 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace MedicalClinicWebApi.BLL.DTOs
 {
     public class AppointmentDTO
-    { 
+    {
+        public int AppointmentId { get; set; }
+
         [Column(TypeName = "SmallDateTime")]
         public DateTime AppointmentDateTime { get; set; }
         public string Notes { get; set; }

@@ -6,8 +6,11 @@ namespace MedicalClinicWebApi.DAL.Models
 {
     public class LabOrder
     {
+        [Key]
         public int LabOrderId { get; set; }
         public string LabName { get; set; }
+
+        [Column(TypeName = "SmallDateTime")]
         public DateTime OrderDate { get; set; }
         public LabResult Result { get; set; }
 

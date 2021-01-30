@@ -29,7 +29,14 @@ namespace MedicalClinicWebApi.BLL
 
             return appointments.Count == 0 ? null : appointments;
         }
-        public async Task CreateAppointment(AppointmentDTO appointment)
+
+        public async Task<Appointment> GetAppointmentByID(int appointmentId)
+        {
+            var appointment = await _unitOfWork.AppointmentRepository.GetByID(appointmentId);
+            return appointment;
+        }
+
+        public async Task<AppointmentDTO> CreateAppointment(AppointmentDTO appointment)
         {
             //var apptDateTime = Convert.ToDateTime(appointmentDTO.AppointmentDateTime);
             //appointmentDTO.AppointmentDateTime = apptDateTime;
@@ -37,6 +44,10 @@ namespace MedicalClinicWebApi.BLL
             
             await _unitOfWork.AppointmentRepository.Insert(appointmentEntity);
             await _unitOfWork.Save();
+
+            var appointmenDTO = _mapper.Map<AppointmentDTO>(appointmentEntity);
+            return appointmenDTO;
+
         }
 
         public async Task UpdateAppointment(AppointmentDTO appointment)
@@ -51,12 +62,6 @@ namespace MedicalClinicWebApi.BLL
         {
             await _unitOfWork.AppointmentRepository.Delete(appointmentId);
             await _unitOfWork.Save();
-        }
-
-        public async Task<Appointment> GetAppointmentByID(int appointmentId)
-        {
-            var appointment = await _unitOfWork.AppointmentRepository.GetByID(appointmentId);
-            return appointment;   
         }
     }
 }

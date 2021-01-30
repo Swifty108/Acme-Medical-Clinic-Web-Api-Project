@@ -1,22 +1,18 @@
-﻿using System;
+﻿using MedicalClinicWebApi.DAL.Models;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MedicalClinicWebApi.DAL.Models
+namespace MedicalClinicWebApi.BLL.DTOs
 {
-    public class Record
+    public class RecordDTO
     {
-        [Key]
         public int RecordId { get; set; }
         public string Notes { get; set; }
 
         [Column(TypeName = "SmallDateTime")]
         public DateTime DateCreated { get; set; }
 
-        [Required]
-        [ForeignKey(nameof(Patient))]
         public string PatientId { get; set; }
-
-        public Patient Patient { get; set; }
     }
 }

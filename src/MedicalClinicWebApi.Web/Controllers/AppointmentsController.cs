@@ -1,5 +1,6 @@
 ﻿using MedicalClinicWebApi.BLL.DTOs;
 using MedicalClinicWebApi.BLL.Interfaces;
+using MedicalClinicWebApi.Common.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -15,10 +16,12 @@ namespace MedicalClinicWebApi.Web.Controllers
     public class AppointmentsController : ControllerBase
     {
         private readonly IAppointmentsLogic _appointmentsLogic;
+        private readonly IUserService _userService;
 
-        public AppointmentsController(IAppointmentsLogic appointmentsLogic)
+        public AppointmentsController(IAppointmentsLogic appointmentsLogic, IUserService userService)
         {
             _appointmentsLogic = appointmentsLogic;
+            _userService = userService;
         }
 
         // GET: api/<AppointmentsController>
@@ -56,6 +59,19 @@ namespace MedicalClinicWebApi.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] AppointmentDTO appointment)
         {
+
+            if (appointment == null)
+            {
+                return BadRequest("Apppointment object is null!");
+            }
+
+            var patientExists = await _userService.FindUserByID(appointment.PatientId);
+
+            if (patientExists == null)
+            {
+                return NotFound("That patient with the supplied patientId could not be found in the database!");
+            }
+
             await _appointmentsLogic.CreateAppointment(appointment);
 
             return Created("", appointment);

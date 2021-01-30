@@ -1,5 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+﻿using MedicalClinicWebApi.BLL.DTOs;
+using MedicalClinicWebApi.BLL.Interfaces;
+using MedicalClinicWebApi.Common.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -7,39 +14,95 @@ namespace MedicalClinicWebApi.Web.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    
     public class RecordsController : ControllerBase
     {
-        // GET: api/<RecordsController>
+        private readonly IRecordsLogic _recordsLogic;
+        private readonly IUserService _userService;
+
+        public RecordsController(IRecordsLogic recordsLogic, IUserService userService)
+        {
+            _recordsLogic = recordsLogic;
+            _userService = userService;
+        }
+
+        // GET: api/<AppointmentsController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IActionResult> Get(string patientId)
         {
-            return new string[] { "records", "value2" };
+            var appointments = await _recordsLogic.GetAllRecords(patientId);
+
+            if (appointments == null)
+                return NotFound();
+
+            else
+            {
+                return Ok(appointments);
+            }
+
         }
 
-        // GET api/<RecordsController>/5
+        // GET api/<AppointmentsController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<IActionResult> Get(int recordId)
         {
-            return "value";
+            var record = await _recordsLogic.GetRecordByID(recordId);
+
+            if (record == null)
+                return NotFound();
+
+            else
+            {
+                return Ok(record);
+            }
         }
 
-        // POST api/<RecordsController>
-        [HttpPost("{value}")]
-        public string Post(string value)
+        // POST api/<AppointmentsController>
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] RecordDTO record)
         {
-            return value;
+
+            if (record == null)
+            {
+                return BadRequest("Record object is null!");
+            }
+
+            var patientExists = await _userService.FindUserByID(record.PatientId);
+
+            if(patientExists == null)
+            {
+                return NotFound("That patient with the supplied patientId could not be found in the database!");
+            }
+            
+            var returnedRecord = await _recordsLogic.CreateRecord(record);
+
+            return Created("", returnedRecord);
         }
 
-        // PUT api/<RecordsController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        // PUT api/<AppointmentsController>/5
+        [HttpPut]
+        public async Task<IActionResult> Put([FromBody] RecordDTO record)
         {
+            try
+            {
+                await _recordsLogic.UpdateRecord(record);
+            }
+            catch (Exception e)
+            {
+
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Status = "Error", e.Message });
+            }
+
+            return Ok();
+
         }
 
-        // DELETE api/<RecordsController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete]
+        public async Task<ActionResult> Delete(int recordId)
         {
+            await _recordsLogic.DeleteRecord(recordId);
+
+            return Ok();
         }
     }
 }

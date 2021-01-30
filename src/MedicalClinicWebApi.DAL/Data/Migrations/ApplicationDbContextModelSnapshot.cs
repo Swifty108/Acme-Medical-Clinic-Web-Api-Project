@@ -143,7 +143,7 @@ namespace MedicalClinicWebApi.DAL.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("OrderDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("SmallDateTime");
 
                     b.Property<string>("PatientId")
                         .IsRequired()
@@ -170,7 +170,7 @@ namespace MedicalClinicWebApi.DAL.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ResultsDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("SmallDateTime");
 
                     b.HasKey("LabResultId");
 
@@ -188,7 +188,7 @@ namespace MedicalClinicWebApi.DAL.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("SmallDateTime");
 
                     b.Property<string>("Notes")
                         .HasColumnType("nvarchar(max)");

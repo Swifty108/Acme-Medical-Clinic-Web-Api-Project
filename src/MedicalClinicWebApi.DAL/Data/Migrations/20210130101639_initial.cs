@@ -190,7 +190,7 @@ namespace MedicalClinicWebApi.DAL.Data.Migrations
                     LabOrderId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     LabName = table.Column<string>(nullable: true),
-                    OrderDate = table.Column<DateTime>(nullable: false),
+                    OrderDate = table.Column<DateTime>(type: "SmallDateTime", nullable: false),
                     PatientId = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
@@ -211,7 +211,7 @@ namespace MedicalClinicWebApi.DAL.Data.Migrations
                     RecordId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Notes = table.Column<string>(nullable: true),
-                    DateCreated = table.Column<DateTime>(nullable: false),
+                    DateCreated = table.Column<DateTime>(type: "SmallDateTime", nullable: false),
                     PatientId = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
@@ -232,7 +232,7 @@ namespace MedicalClinicWebApi.DAL.Data.Migrations
                     LabResultId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Notes = table.Column<string>(nullable: true),
-                    ResultsDate = table.Column<DateTime>(nullable: false),
+                    ResultsDate = table.Column<DateTime>(type: "SmallDateTime", nullable: false),
                     LabOrderId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
