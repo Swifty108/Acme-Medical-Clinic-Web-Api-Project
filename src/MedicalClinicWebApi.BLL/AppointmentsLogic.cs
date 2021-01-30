@@ -53,6 +53,10 @@ namespace MedicalClinicWebApi.BLL
             await _unitOfWork.Save();
         }
 
-
+        public async Task<Appointment> GetAppointmentByID(int appointmentId)
+        {
+            var appointment = await _unitOfWork.AppointmentRepository.GetByID(appointmentId);
+            return appointment;   
+        }
     }
 }

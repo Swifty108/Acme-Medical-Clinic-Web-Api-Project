@@ -39,9 +39,17 @@ namespace MedicalClinicWebApi.Web.Controllers
 
         // GET api/<AppointmentsController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<IActionResult> Get(int appointmentId)
         {
-            return "value";
+            var appointment = await _appointmentsLogic.GetAppointmentByID(appointmentId);
+
+            if (appointment == null)
+                return NotFound();
+
+            else
+            {
+                return Ok(appointment);
+            }
         }
 
         // POST api/<AppointmentsController>
