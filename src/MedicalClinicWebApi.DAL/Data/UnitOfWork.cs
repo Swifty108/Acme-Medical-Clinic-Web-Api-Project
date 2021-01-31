@@ -10,6 +10,7 @@ namespace Apartments.DAL.Data
     {
         private ApplicationDbContext _dbContext;
         private GenericRepository<LabOrder> _labOrders;
+        private GenericRepository<LabResult> _labResults;
         private GenericRepository<Record> _records;
         private GenericRepository<Appointment> _appointments;
 
@@ -24,6 +25,14 @@ namespace Apartments.DAL.Data
             {
                 return _labOrders ??
                     (_labOrders = new GenericRepository<LabOrder>(_dbContext));
+            }
+        }
+        public IRepository<LabResult> LabResultRepository
+        {
+            get
+            {
+                return _labResults ??
+                    (_labResults = new GenericRepository<LabResult>(_dbContext));
             }
         }
 
