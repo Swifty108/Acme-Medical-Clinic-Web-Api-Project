@@ -1,4 +1,4 @@
-# Acme Medical Clinic Web Api Demo Project
+# Medical Clinic Web Api Demo Project
 
 This is an ASP.NET Core Web API demo app used as a backend API for a fictional medical clinic.
 
