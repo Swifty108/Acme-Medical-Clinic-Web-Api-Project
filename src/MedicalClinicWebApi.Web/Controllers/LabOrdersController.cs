@@ -1,12 +1,9 @@
 ﻿using MedicalClinicWebApi.BLL.DTOs;
 using MedicalClinicWebApi.BLL.Interfaces;
 using MedicalClinicWebApi.Common.Interfaces;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -69,9 +66,9 @@ namespace MedicalClinicWebApi.Web.Controllers
                 return BadRequest("Record object is null!");
             }
 
-            var orderExists = await _userService.FindUserByID(labOrder.PatientId);
+            var patientExists = await _userService.FindUserByID(labOrder.PatientId);
 
-            if (orderExists == null)
+            if (patientExists == null)
             {
                 return NotFound("That patient with the supplied patientId could not be found in the database!");
             }

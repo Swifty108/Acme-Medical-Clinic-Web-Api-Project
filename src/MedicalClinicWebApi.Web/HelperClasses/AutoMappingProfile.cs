@@ -1,6 +1,6 @@
-﻿using MedicalClinicWebApi.BLL.DTOs;
+﻿using AutoMapper;
+using MedicalClinicWebApi.BLL.DTOs;
 using MedicalClinicWebApi.DAL.Models;
-using AutoMapper;
 
 namespace Apartments.BLL.HelperClasses
 {
@@ -13,6 +13,7 @@ namespace Apartments.BLL.HelperClasses
             CreateMap<AppointmentDTO, Appointment>().ReverseMap();
             CreateMap<RecordDTO, Record>().ReverseMap();
             CreateMap<LabOrderDTO, LabOrder>().ReverseMap();
+            CreateMap<LabResultDTO, LabResult>().ReverseMap();
         }
     }
 }

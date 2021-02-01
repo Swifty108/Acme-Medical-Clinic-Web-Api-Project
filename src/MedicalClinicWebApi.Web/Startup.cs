@@ -1,14 +1,15 @@
 using Apartments.BLL.HelperClasses;
 using Apartments.DAL.Data;
 using Apartments.DAL.Interfaces;
+using AutoMapper;
+using MediatR;
 using MedicalClinicWebApi.BLL;
 using MedicalClinicWebApi.BLL.Interfaces;
+using MedicalClinicWebApi.Common.Interfaces;
 using MedicalClinicWebApi.Common.Services;
 using MedicalClinicWebApi.DAL.Data;
 using MedicalClinicWebApi.DAL.Identity;
 using MedicalClinicWebApi.DAL.Models;
-using AutoMapper;
-using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -16,8 +17,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using MedicalClinicWebApi.Common.Interfaces;
 
 namespace MedicalClinicWebApi.Web
 {
@@ -35,7 +34,7 @@ namespace MedicalClinicWebApi.Web
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")),
-                    ServiceLifetime.Scoped
+                    ServiceLifetime.Transient
                     );
             services.AddIdentity<AppUser, IdentityRole>(options =>
             {
@@ -75,6 +74,7 @@ namespace MedicalClinicWebApi.Web
             services.AddTransient<IRecordsLogic, RecordsLogic>();
             services.AddTransient<IAppointmentsLogic, AppointmentsLogic>();
             services.AddTransient<ILabOrdersLogic, LabOrersLogic>();
+            services.AddTransient<ILabResultsLogic, LabResultsLogic>();
 
             services.AddMediatR(typeof(Startup));
             services.AddHttpContextAccessor();
