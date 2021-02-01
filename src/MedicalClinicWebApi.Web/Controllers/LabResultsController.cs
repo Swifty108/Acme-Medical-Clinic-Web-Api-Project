@@ -16,13 +16,11 @@ namespace MedicalClinicWebApi.Web.Controllers
     {
         private readonly ILabResultsLogic _labResultsLogic;
         private readonly ILabOrdersLogic _labOrdersLogic;
-        private readonly IUserService _userService;
 
         public LabResultsController(ILabResultsLogic labResultsLogic, ILabOrdersLogic labOrdersLogic, IUserService userService)
         {
             _labResultsLogic = labResultsLogic;
             _labOrdersLogic = labOrdersLogic;
-            _userService = userService;
         }
 
         // GET: api/<AppointmentsController>

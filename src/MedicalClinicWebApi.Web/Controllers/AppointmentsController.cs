@@ -9,10 +9,10 @@ using System;
 using System.Threading.Tasks;
 
 namespace MedicalClinicWebApi.Web.Controllers
-{ 
+{
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Employee")]
     public class AppointmentsController : ControllerBase
     {
         private readonly IAppointmentsLogic _appointmentsLogic;
@@ -92,7 +92,7 @@ namespace MedicalClinicWebApi.Web.Controllers
             }
 
             return Ok();
-            
+
         }
 
         [HttpDelete]

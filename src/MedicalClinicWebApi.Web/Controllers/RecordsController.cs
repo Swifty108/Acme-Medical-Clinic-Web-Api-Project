@@ -70,11 +70,11 @@ namespace MedicalClinicWebApi.Web.Controllers
 
             var patientExists = await _userService.FindUserByID(record.PatientId);
 
-            if(patientExists == null)
+            if (patientExists == null)
             {
                 return NotFound("That patient with the supplied patientId could not be found in the database!");
             }
-            
+
             var returnedRecord = await _recordsLogic.CreateRecord(record);
 
             return Created("", returnedRecord);
