@@ -1,8 +1,6 @@
 ﻿using MedicalClinicWebApi.BLL.DTOs;
 using MedicalClinicWebApi.BLL.Interfaces;
 using MedicalClinicWebApi.Common.Interfaces;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,7 +10,7 @@ namespace MedicalClinicWebApi.Web.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Employee")]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Employee")]
     public class AppointmentsController : ControllerBase
     {
         private readonly IAppointmentsLogic _appointmentsLogic;
@@ -33,15 +31,13 @@ namespace MedicalClinicWebApi.Web.Controllers
             if (appointments == null)
                 return NotFound();
 
-            else
-            {
-                return Ok(appointments);
-            }
+
+            return Ok(appointments);
+
 
         }
 
-        // GET api/<AppointmentsController>/5
-        [HttpGet("{id}")]
+        [HttpGet("{appointmentid:int}")]
         public async Task<IActionResult> Get(int appointmentId)
         {
             var appointment = await _appointmentsLogic.GetAppointmentByID(appointmentId);

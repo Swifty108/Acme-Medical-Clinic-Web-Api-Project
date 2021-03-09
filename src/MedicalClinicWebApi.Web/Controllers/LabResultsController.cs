@@ -1,8 +1,6 @@
 ﻿using MedicalClinicWebApi.BLL.DTOs;
 using MedicalClinicWebApi.BLL.Interfaces;
 using MedicalClinicWebApi.Common.Interfaces;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -10,7 +8,7 @@ namespace MedicalClinicWebApi.Web.Controllers
 {
     [Route("api/laborders/{laborderid}/results")]
     [ApiController]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 
     public class LabResultsController : ControllerBase
     {
