@@ -1,4 +1,4 @@
-# Medical Clinic Web Api Demo Project
+# Medical Clinic Demo Web Api Project
 
 This is an ASP.NET Core Web API demo app used as a backend API for a fictional medical clinic.
 
