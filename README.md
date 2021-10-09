@@ -1,5 +1,5 @@
 <p align="center"> 
-  <img width=181 src="https://user-images.githubusercontent.com/19508650/136642653-f364610f-daba-4ec4-8838-8c7d97494729.png">
+  <img width=182 src="https://user-images.githubusercontent.com/19508650/136642653-f364610f-daba-4ec4-8838-8c7d97494729.png">
 </p>
 
 # Medical Clinic Demo Web Api Project
