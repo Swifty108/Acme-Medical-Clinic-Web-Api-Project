@@ -19,3 +19,5 @@ These Android apps were used to facilitate effective time management: Microsoft 
 ## Application Features
 
 There are two primary roles in the application, `Employee`, and `Patient`. And there are six Web API controllers with respective resource endpoints, Acccount, Appointments, Auth, LabOrders, LabResults, and Records controllers. The LabResults API is an association API which serve only the child Results entity of the LabOrder entity.
+
+
