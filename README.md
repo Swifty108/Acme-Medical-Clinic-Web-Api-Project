@@ -4,7 +4,7 @@
 
 # Medical Clinic Demo Web Api Project
 
-This is an ASP.NET Core Web API demo app used as a backend API for a fictional medical clinic.
+This is an ASP.NET Core RESTful Web API demo application used as a back-end API for a fictional medical clinic.
 
 ## Technology Stacks and Tools Used
 
