@@ -6,7 +6,7 @@
 
 This is an ASP.NET Core Web API demo app used as a backend API for a fictional medical clinic.
 
-## Technology Stacks Used
+## Technology Stacks and Tools Used
 
 ASP.NET Core 3.1 Web API, EF Core 3.1, Automapper 10.1.1, SQL Server, Microsoft SQL Server Management Studio, Postman, Git for Version Control, Azure DevOps for project management.
 
@@ -18,6 +18,6 @@ These Android apps were used to facilitate effective time management: Microsoft 
 
 ## Application Features
 
-There are two primary roles in the application, `Employee`, and `Patient`. And there are six Web API controllers with respective resource endpoints, Acccount, Appointments, Auth, LabOrders, LabResults, and Records controllers. The LabResults API is an association API which serve only the child Results entity of the LabOrder entity.
+There are two primary roles in the application, `Employee`, and `Patient`. And there are six web API controllers with respective resource endpoints: Acccount, Appointments, Auth, LabOrders, LabResults, and Records controllers. The LabResults API is an association API which serves the LabOrder entity's child Results entity.
 
 
