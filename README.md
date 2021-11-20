@@ -21,3 +21,4 @@ ASP.NET Core 3.1 Web API, EF Core 3.1, Automapper 10.1.1, SQL Server, Microsoft 
 There are two primary roles in the application, `Employee`, and `Patient`. And there are six web API controllers with respective resource endpoints: Acccount, Appointments, Auth, LabOrders, LabResults, and Records controllers. The LabResults API is an association API which serves the LabOrder entity's child Results entity.
 
 
+
