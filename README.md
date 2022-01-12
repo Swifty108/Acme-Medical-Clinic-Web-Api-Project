@@ -8,13 +8,13 @@ This is an ASP.NET Core RESTful Web API demo application used as a back-end API 
 
 ## Technology Stacks and Tools Used
 
-ASP.NET Core 3.1 Web API, EF Core 3.1, Automapper 10.1.1, SQL Server, Microsoft SQL Server Management Studio, Postman, Git for Version Control, Azure DevOps for project management.
+**Frameworks, languages, and tools:** C#, ASP.NET Core 3.1 Web API, EF Core 3.1, Automapper 10.1.1, SQL Server, Microsoft SQL Server Management Studio, Postman, Git for Version Control, Azure DevOps for project management.
 
-**Design Patterns and Architectural Patterns**: generic repository pattern, unit of work pattern, 3-layered architecture.
+**Design patterns and architectural patterns**: generic repository pattern, unit of work pattern, 3-layered architecture.
 
-**Visual Studio Extensions**: Productivity Power Tools, CodeMaid, Github extension for Visual Studio 2019, and Snippet Designer. 
+**Visual Studio extensions**: Productivity Power Tools, CodeMaid, Github extension for Visual Studio 2019, and Snippet Designer. 
 
-**These Android apps were used to facilitate effective time management**: Microsoft To-Do app, Trello app, and the Pomodoro app.
+**Android apps for time management**: Microsoft To-Do app, Trello app, and the Pomodoro app.
 
 ## Application Features
 
