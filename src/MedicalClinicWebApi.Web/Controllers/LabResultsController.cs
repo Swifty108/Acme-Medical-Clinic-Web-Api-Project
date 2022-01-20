@@ -29,12 +29,10 @@ namespace MedicalClinicWebApi.Web.Controllers
 
             if (labResult == null)
                 return NotFound();
-
             else
             {
                 return Ok(labResult);
             }
-
         }
 
         // GET api/<AppointmentsController>/5
@@ -45,18 +43,15 @@ namespace MedicalClinicWebApi.Web.Controllers
 
             if (labOrder == null)
                 return NotFound();
-
             else
             {
                 return Ok(labOrder);
             }
         }
 
-
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] LabResultDTO labResultDTO)
         {
-
             if (labResultDTO == null)
             {
                 return BadRequest("Result object is null!");
@@ -73,31 +68,5 @@ namespace MedicalClinicWebApi.Web.Controllers
 
             return Created("", returnedLabResult);
         }
-
-        //// PUT api/<AppointmentsController>/5
-        //[HttpPut]
-        //public async Task<IActionResult> Put([FromBody] LabOrderDTO labOrder)
-        //{
-        //    try
-        //    {
-        //        await _labResultsLogic.UpdateLabOrder(labOrder);
-        //    }
-        //    catch (Exception e)
-        //    {
-
-        //        return StatusCode(StatusCodes.Status500InternalServerError, new { Status = "Error", e.Message });
-        //    }
-
-        //    return Ok();
-
-        //}
-
-        //[HttpDelete]
-        //public async Task<ActionResult> Delete(int labOrderId)
-        //{
-        //    await _labResultsLogic.DeleteLabOrder(labOrderId);
-
-        //    return Ok();
-        //}
     }
 }
