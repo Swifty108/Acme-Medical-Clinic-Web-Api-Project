@@ -9,8 +9,8 @@ namespace MedicalClinicWebApi.BLL.Interfaces
     {
         Task<LabResult> GetLabResult(int labOrderId);
         Task<LabResult> GetLabResultByID(int labResultId);
-        Task<LabResultDTO> CreateLabResult(LabResultDTO labResultDTO);
-        Task UpdateLabResult(LabResultDTO labResultDTO);
+        Task<LabResultDto> CreateLabResult(LabResultDto labResultDTO);
+        Task UpdateLabResult(LabResultDto labResultDTO);
         Task DeleteLabResult(int labResultId);
 
     }

@@ -10,10 +10,10 @@ namespace Apartments.BLL.HelperClasses
         {
             //Appointemnt Logic Class in BLL
 
-            CreateMap<AppointmentDTO, Appointment>().ReverseMap();
-            CreateMap<RecordDTO, Record>().ReverseMap();
-            CreateMap<LabOrderDTO, LabOrder>().ReverseMap();
-            CreateMap<LabResultDTO, LabResult>().ReverseMap();
+            CreateMap<AppointmentDto, Appointment>().ReverseMap();
+            CreateMap<RecordDto, Record>().ReverseMap();
+            CreateMap<LabOrderDto, LabOrder>().ReverseMap();
+            CreateMap<LabResultDto, LabResult>().ReverseMap();
         }
     }
 }

@@ -57,7 +57,7 @@ namespace MedicalClinicWebApi.Web.Controllers
 
         // POST api/<AppointmentsController>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] LabOrderDTO labOrder)
+        public async Task<IActionResult> Post([FromBody] LabOrderDto labOrder)
         {
 
             if (labOrder == null)
@@ -79,7 +79,7 @@ namespace MedicalClinicWebApi.Web.Controllers
 
         // PUT api/<AppointmentsController>/5
         [HttpPut]
-        public async Task<IActionResult> Put([FromBody] LabOrderDTO labOrder)
+        public async Task<IActionResult> Put([FromBody] LabOrderDto labOrder)
         {
             try
             {

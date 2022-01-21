@@ -9,8 +9,8 @@ namespace MedicalClinicWebApi.BLL.Interfaces
     {
         Task<IEnumerable<LabOrder>> GetAllLabOrders(string patientId);
         Task<LabOrder> GetLabOrderByID(int labOrderId);
-        Task<LabOrderDTO> CreateLabOrder(LabOrderDTO labOrderDTO);
-        Task UpdateLabOrder(LabOrderDTO labOrder);
+        Task<LabOrderDto> CreateLabOrder(LabOrderDto labOrderDTO);
+        Task UpdateLabOrder(LabOrderDto labOrder);
         Task DeleteLabOrder(int labOrderId);
 
     }

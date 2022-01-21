@@ -50,7 +50,7 @@ namespace MedicalClinicWebApi.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] LabResultDTO labResultDTO)
+        public async Task<IActionResult> Post([FromBody] LabResultDto labResultDTO)
         {
             if (labResultDTO == null)
             {

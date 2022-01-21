@@ -36,7 +36,7 @@ namespace MedicalClinicWebApi.BLL
             return record;
         }
 
-        public async Task<RecordDTO> CreateRecord(RecordDTO record)
+        public async Task<RecordDto> CreateRecord(RecordDto record)
         {
             //var apptDateTime = Convert.ToDateTime(appointmentDTO.AppointmentDateTime);
             //appointmentDTO.AppointmentDateTime = apptDateTime;
@@ -46,12 +46,12 @@ namespace MedicalClinicWebApi.BLL
             await _unitOfWork.RecordRepository.Insert(recordEntity);
             await _unitOfWork.Save();
 
-            var createdRecord = _mapper.Map<RecordDTO>(recordEntity);
+            var createdRecord = _mapper.Map<RecordDto>(recordEntity);
 
             return createdRecord;
         }
 
-        public async Task UpdateRecord(RecordDTO record)
+        public async Task UpdateRecord(RecordDto record)
         {
             var recordEntity = _mapper.Map<Record>(record);
 

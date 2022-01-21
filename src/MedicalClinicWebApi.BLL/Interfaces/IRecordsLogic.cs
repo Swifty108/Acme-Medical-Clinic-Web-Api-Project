@@ -9,8 +9,8 @@ namespace MedicalClinicWebApi.BLL.Interfaces
     {
         Task<IEnumerable<Record>> GetAllRecords(string patientId);
         Task<Record> GetRecordByID(int recordId);
-        Task<RecordDTO> CreateRecord(RecordDTO recordDTO);
-        Task UpdateRecord(RecordDTO record);
+        Task<RecordDto> CreateRecord(RecordDto recordDTO);
+        Task UpdateRecord(RecordDto record);
         Task DeleteRecord(int recordId);
 
     }

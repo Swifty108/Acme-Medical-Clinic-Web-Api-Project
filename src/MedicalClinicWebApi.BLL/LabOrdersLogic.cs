@@ -36,19 +36,19 @@ namespace MedicalClinicWebApi.BLL
             return labOrder;
         }
 
-        public async Task<LabOrderDTO> CreateLabOrder(LabOrderDTO labOrderDTO)
+        public async Task<LabOrderDto> CreateLabOrder(LabOrderDto labOrderDTO)
         {
             var labOrderEntity = _mapper.Map<LabOrder>(labOrderDTO);
 
             await _unitOfWork.LabOrderRepository.Insert(labOrderEntity);
             await _unitOfWork.Save();
 
-            var createdLabOrder = _mapper.Map<LabOrderDTO>(labOrderEntity);
+            var createdLabOrder = _mapper.Map<LabOrderDto>(labOrderEntity);
 
             return createdLabOrder;
         }
 
-        public async Task UpdateLabOrder(LabOrderDTO labOrder)
+        public async Task UpdateLabOrder(LabOrderDto labOrder)
         {
             var labOrderEntity = _mapper.Map<Record>(labOrder);
 

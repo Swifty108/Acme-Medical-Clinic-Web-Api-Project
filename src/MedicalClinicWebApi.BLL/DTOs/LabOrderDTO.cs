@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MedicalClinicWebApi.BLL.DTOs
 {
-    public class LabOrderDTO
+    public class LabOrderDto
     {
         public int LabOrderId { get; set; }
         public string LabName { get; set; }
