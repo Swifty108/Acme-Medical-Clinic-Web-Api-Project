@@ -10,7 +10,6 @@ namespace MedicalClinicWebApi.Web.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Employee")]
     public class AppointmentsController : ControllerBase
     {
         private readonly IAppointmentsLogic _appointmentsLogic;

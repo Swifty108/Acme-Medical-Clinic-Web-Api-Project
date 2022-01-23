@@ -8,8 +8,6 @@ namespace MedicalClinicWebApi.Web.Controllers
 {
     [Route("api/laborders/{laborderid}/results")]
     [ApiController]
-    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-
     public class LabResultsController : ControllerBase
     {
         private readonly ILabResultsLogic _labResultsLogic;

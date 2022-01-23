@@ -12,7 +12,6 @@ namespace MedicalClinicWebApi.Web.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class LabOrdersController : ControllerBase
     {
         private readonly ILabOrdersLogic _labOrdersLogic;

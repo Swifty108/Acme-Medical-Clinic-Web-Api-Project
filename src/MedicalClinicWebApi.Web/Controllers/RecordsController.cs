@@ -12,8 +12,6 @@ namespace MedicalClinicWebApi.Web.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-
     public class RecordsController : ControllerBase
     {
         private readonly IRecordsLogic _recordsLogic;
