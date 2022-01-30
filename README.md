@@ -21,4 +21,3 @@ This is an ASP.NET Core RESTful Web API demo application used as a back-end API 
 There are two primary roles in the application, `Employee`, and `Patient`. And there are six web API controllers with respective resource endpoints: Acccount, Appointments, Auth, LabOrders, LabResults, and Records controllers. The LabResults API is an association API which serves the LabOrder entity's child Results entity.
 
 
-
