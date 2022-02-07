@@ -19,7 +19,6 @@ namespace MedicalClinicWebApi.Web.Controllers
             _labOrdersLogic = labOrdersLogic;
         }
 
-        // GET: api/<AppointmentsController>
         [HttpGet]
         public async Task<IActionResult> Get(int labOrderId)
         {
@@ -33,7 +32,6 @@ namespace MedicalClinicWebApi.Web.Controllers
             }
         }
 
-        // GET api/<AppointmentsController>/5
         [HttpGet("{labresultid}")]
         public async Task<IActionResult> GetByID(int labResultId)
         {
