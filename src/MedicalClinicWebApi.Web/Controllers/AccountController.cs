@@ -28,22 +28,16 @@ namespace MedicalClinicWebApi.Web.Controllers
         [Route("registeremployee")]
         public async Task<IActionResult> RegisterEmployee([FromBody] RegisterEmployeeModel model)
         {
-            var userExists = await _userService.FindUserByName(model.UserName);
+            var user = await _userService.FindUserByName(model.UserName);
 
-            if (userExists != null)
+            if (user != null)
                 return StatusCode(StatusCodes.Status500InternalServerError, new { Status = "Error", Message = "User already exists!" });
 
             else
             {
-                var result = await _accountLogic.RegisterEmployee(model);
+                var userId = await _accountLogic.RegisterEmployee(model);
 
-                if (result.Succeeded)
-                    return Ok(new { Status = "Success", Message = "User created successfully!" });
-
-                else
-                {
-                    return StatusCode(StatusCodes.Status500InternalServerError, new { Status = "Error", Message = "User creation failed! Please check user details and try again." });
-                }
+                return userId != null ? Ok(new { Status = "Success", Message = "Employee account registered successfully!", UserId = userId }) : StatusCode(StatusCodes.Status500InternalServerError, new { Status = "Error", Message = "Employee account registration failed!Please check user details and try again." });
             }
         }
 
@@ -52,22 +46,16 @@ namespace MedicalClinicWebApi.Web.Controllers
         [Route("registerpatient")]
         public async Task<IActionResult> RegisterPatient([FromBody] RegisterPatientModel model)
         {
-            var userExists = await _userService.FindUserByName(model.UserName);
+            var user = await _userService.FindUserByName(model.UserName);
 
-            if (userExists != null)
+            if (user != null)
                 return StatusCode(StatusCodes.Status500InternalServerError, new { Status = "Error", Message = "User already exists!" });
 
             else
             {
-                var result = await _accountLogic.RegisterPatient(model);
+                var userId = await _accountLogic.RegisterPatient(model);
 
-                if (result.Succeeded)
-                    return Ok(new { Status = "Success", Message = "User created successfully!" });
-
-                else
-                {
-                    return StatusCode(StatusCodes.Status500InternalServerError, new { Status = "Error", Message = "User creation failed! Please check user details and try again." });
-                }
+                return userId != null ? Ok(new { Status = "Success", Message = "Patient account registered successfully!", UserId = userId}) : StatusCode(StatusCodes.Status500InternalServerError, new { Status = "Error", Message = "Patient account registration failed! Please check user details and try again." });
             }
         }
 

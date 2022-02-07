@@ -18,13 +18,13 @@ namespace MedicalClinicWebApi.BLL
             _userManager = userManager;
         }
 
-        public async Task<IdentityResult> RegisterEmployee(RegisterEmployeeModel model)
+        public async Task<string> RegisterEmployee(RegisterEmployeeModel model)
         {
             Employee user = new Employee()
             {
+                UserName = model.UserName,
                 Email = model.Email,
                 SecurityStamp = Guid.NewGuid().ToString(),
-                UserName = model.UserName,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 StreetAddress = model.StreetAddress,
@@ -35,19 +35,27 @@ namespace MedicalClinicWebApi.BLL
                 Department = model.Department
             };
 
-            var result = await _userManager.CreateAsync(user, model.Password);
-            await _userManager.AddToRoleAsync(user, "Employee");
+            try
+            {
+                await _userManager.CreateAsync(user, model.Password);
+                await _userManager.AddToRoleAsync(user, "Employee");
+                var userId = await _userManager.GetUserIdAsync(user);
 
-            return result;
+                return userId;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
-        public async Task<IdentityResult> RegisterPatient(RegisterPatientModel model)
+        public async Task<string> RegisterPatient(RegisterPatientModel model)
         {
             Patient user = new Patient()
             {
+                UserName = model.UserName,
                 Email = model.Email,
                 SecurityStamp = Guid.NewGuid().ToString(),
-                UserName = model.UserName,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 StreetAddress = model.StreetAddress,
@@ -59,10 +67,18 @@ namespace MedicalClinicWebApi.BLL
                 InsuranceNumber = model.InsuranceNumber
             };
 
-            var result = await _userManager.CreateAsync(user, model.Password);
-            await _userManager.AddToRoleAsync(user, "Patient");
-
-            return result;
+            try
+            {
+                await _userManager.CreateAsync(user, model.Password);
+                await _userManager.AddToRoleAsync(user, "Patient");
+                var userId = await _userManager.GetUserIdAsync(user);
+                
+                return userId;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
     }
 }
