@@ -36,17 +36,17 @@ namespace MedicalClinicWebApi.BLL
             return appointment;
         }
 
-        public async Task<AppointmentDto> CreateAppointment(AppointmentDto appointment)
+        public async Task<AppointmentDto> CreateAppointment(AppointmentDto newAppointment)
         {
-            //var apptDateTime = Convert.ToDateTime(appointmentDTO.AppointmentDateTime);
-            //appointmentDTO.AppointmentDateTime = apptDateTime;
-            var appointmentEntity = _mapper.Map<Appointment>(appointment);
+            var appointmentEntity = _mapper.Map<Appointment>(newAppointment);
             
-            await _unitOfWork.AppointmentRepository.Insert(appointmentEntity);
+             await _unitOfWork.AppointmentRepository.Insert(appointmentEntity);
             await _unitOfWork.Save();
 
-            var appointmenDTO = _mapper.Map<AppointmentDto>(appointmentEntity);
-            return appointmenDTO;
+            var thisAppointment = await _unitOfWork.AppointmentRepository.Get(filter: appointment => appointment.PatientId == newAppointment.PatientId && appointment.Notes == newAppointment.Notes).FirstOrDefaultAsync();
+
+            var newAppointmentDto = _mapper.Map<AppointmentDto>(thisAppointment);
+            return newAppointmentDto;
 
         }
 

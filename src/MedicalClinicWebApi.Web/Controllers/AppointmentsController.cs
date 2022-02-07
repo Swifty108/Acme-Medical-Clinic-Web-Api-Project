@@ -21,7 +21,6 @@ namespace MedicalClinicWebApi.Web.Controllers
             _userService = userService;
         }
 
-        // GET: api/<AppointmentsController>
         [HttpGet]
         public async Task<IActionResult> Get(string patientId)
         {
@@ -50,7 +49,6 @@ namespace MedicalClinicWebApi.Web.Controllers
             }
         }
 
-        // POST api/<AppointmentsController>
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] AppointmentDto appointment)
         {
@@ -67,12 +65,11 @@ namespace MedicalClinicWebApi.Web.Controllers
                 return NotFound("That patient with the supplied patientId could not be found in the database!");
             }
 
-            await _appointmentsLogic.CreateAppointment(appointment);
+            var newAppointment = await _appointmentsLogic.CreateAppointment(appointment);
 
-            return Created("", appointment);
+            return Created("", newAppointment);
         }
 
-        // PUT api/<AppointmentsController>/5
         [HttpPut]
         public async Task<IActionResult> Put([FromBody] AppointmentDto appointment)
         {
