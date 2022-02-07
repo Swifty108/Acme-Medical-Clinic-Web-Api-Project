@@ -23,7 +23,6 @@ namespace MedicalClinicWebApi.Web.Controllers
             _userService = userService;
         }
 
-        // GET: api/<AppointmentsController>
         [HttpGet]
         public async Task<IActionResult> Get(string patientId)
         {
@@ -39,11 +38,10 @@ namespace MedicalClinicWebApi.Web.Controllers
 
         }
 
-        // GET api/<AppointmentsController>/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int labOrderId)
+        public async Task<IActionResult> Get(int id)
         {
-            var labOrder = await _labOrdersLogic.GetLabOrderByID(labOrderId);
+            var labOrder = await _labOrdersLogic.GetLabOrderByID(id);
 
             if (labOrder == null)
                 return NotFound();
@@ -54,7 +52,6 @@ namespace MedicalClinicWebApi.Web.Controllers
             }
         }
 
-        // POST api/<AppointmentsController>
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] LabOrderDto labOrder)
         {
@@ -76,7 +73,6 @@ namespace MedicalClinicWebApi.Web.Controllers
             return Created("", returnedOrder);
         }
 
-        // PUT api/<AppointmentsController>/5
         [HttpPut]
         public async Task<IActionResult> Put([FromBody] LabOrderDto labOrder)
         {
@@ -95,9 +91,9 @@ namespace MedicalClinicWebApi.Web.Controllers
         }
 
         [HttpDelete]
-        public async Task<ActionResult> Delete(int labOrderId)
+        public async Task<ActionResult> Delete(int id)
         {
-            await _labOrdersLogic.DeleteLabOrder(labOrderId);
+            await _labOrdersLogic.DeleteLabOrder(id);
 
             return Ok();
         }

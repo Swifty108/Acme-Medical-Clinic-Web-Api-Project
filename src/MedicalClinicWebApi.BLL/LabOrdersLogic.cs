@@ -50,15 +50,15 @@ namespace MedicalClinicWebApi.BLL
 
         public async Task UpdateLabOrder(LabOrderDto labOrder)
         {
-            var labOrderEntity = _mapper.Map<Record>(labOrder);
+            var labOrderEntity = _mapper.Map<LabOrder>(labOrder);
 
-            _unitOfWork.RecordRepository.Update(labOrderEntity);
+            _unitOfWork.LabOrderRepository.Update(labOrderEntity);
             await _unitOfWork.Save();
         }
 
         public async Task DeleteLabOrder(int labOrderId)
         {
-            await _unitOfWork.AppointmentRepository.Delete(labOrderId);
+            await _unitOfWork.LabOrderRepository.Delete(labOrderId);
             await _unitOfWork.Save();
         }
     }
