@@ -57,7 +57,13 @@ namespace Apartments.DAL.Data
 
         public virtual async Task Insert(TEntity entity)
         {
-          await dbSet.AddAsync(entity);
+             await dbSet.AddAsync(entity);
+        }
+
+        public virtual void Update(TEntity entity)
+        {
+            dbSet.Attach(entity);
+            context.Entry(entity).State = EntityState.Modified;
         }
 
         public virtual async Task Delete(object id)
@@ -75,10 +81,6 @@ namespace Apartments.DAL.Data
             dbSet.Remove(entityToDelete);
         }
 
-        public virtual void Update(TEntity entityToUpdate)
-        {
-            dbSet.Attach(entityToUpdate);
-            context.Entry(entityToUpdate).State = EntityState.Modified;
-        }
+        
     }
 }

@@ -16,7 +16,7 @@ namespace Apartments.DAL.Interfaces
 
         public Task Insert(TEntity entity);
 
-        public void Update(TEntity entityToUpdate);
+        public void Update(TEntity entity);
 
         public Task Delete(object id);
 
