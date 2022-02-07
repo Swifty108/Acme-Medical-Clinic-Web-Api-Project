@@ -24,27 +24,28 @@ namespace MedicalClinicWebApi.DAL.Data
                             {
                                 UserName = "john.doe@employee.com",
                                 Email = "john.doe@employee.com",
-                                FirstName = "Sarah",
-                                LastName = "Evans",
+                                FirstName = "John",
+                                LastName = "Doe",
                                 StreetAddress = "123 Ronan Street",
                                 City = "Atlanta",
                                 State = "Georgia",
-                                Zipcode = "54363",
-                                PhoneNumber = "767-545-6753",
-                                Department = "Clinic"
+                                Zipcode = "77777",
+                                PhoneNumber = "777-777-7777",
+                                Department = "Nephrology"
    
                             },
             new Patient
                             {
-                                FirstName = "Emily",
-                                LastName = "Smith",
+
                                 UserName = "emily.smith@patient.com",
                                 Email = "emily.smith@patient.com",
+                                FirstName = "Emily",
+                                LastName = "Smith",
                                 StreetAddress = "456 Planter Street",
                                 City = "Atlanta",
                                 State = "Georgia",
-                                Zipcode = "54363",
-                                PhoneNumber = "767-545-5383",
+                                Zipcode = "88888",
+                                PhoneNumber = "888-888-8888",
                                 InsuranceName = "HBCBS",
                                 InsuranceNumber = "FCM437343437"
                             }
