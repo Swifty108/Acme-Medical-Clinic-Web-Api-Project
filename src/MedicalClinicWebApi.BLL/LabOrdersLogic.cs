@@ -1,14 +1,11 @@
 ﻿using Apartments.DAL.Interfaces;
-using MedicalClinicWebApi.BLLDTOs;
-using MedicalClinicWebApi.BLL.Interfaces;
-using MedicalClinicWebApi.DAL.Identity;
-using MedicalClinicWebApi.DAL.Models;
 using AutoMapper;
-using Microsoft.AspNetCore.Identity;
+using MedicalClinicWebApi.BLL.Interfaces;
+using MedicalClinicWebApi.BLLDTOs;
+using MedicalClinicWebApi.DAL.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System;
 
 namespace MedicalClinicWebApi.BLL
 {
