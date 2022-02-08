@@ -40,21 +40,15 @@ namespace MedicalClinicWebApi.Web.Controllers
         public async Task<IActionResult> Get(int id, string patientId)
         {
             var labOrder = await _labOrdersLogic.GetLabOrderByID(id, patientId);
-
-            if (labOrder == null)
-                return NotFound();
-            else
-            {
-                return Ok(labOrder);
-            }
+            return labOrder != null ? Ok(labOrder) : NotFound();
         }
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] LabOrderDto labOrder)
         {
-            if (labOrder == null)
+            if (!ModelState.IsValid)
             {
-                return BadRequest("Record object is null!");
+                return BadRequest("Record object is invalid!");
             }
 
             var patientExists = await _userService.FindUserByID(labOrder.PatientId);
