@@ -1,5 +1,5 @@
 ﻿using Apartments.DAL.Interfaces;
-using MedicalClinicWebApi.BLL.DTOs;
+using MedicalClinicWebApi.BLLDTOs;
 using MedicalClinicWebApi.BLL.Interfaces;
 using MedicalClinicWebApi.DAL.Identity;
 using MedicalClinicWebApi.DAL.Models;
@@ -30,15 +30,16 @@ namespace MedicalClinicWebApi.BLL
             return labOrders.Count == 0 ? null : labOrders;
         }
 
-        public async Task<LabOrder> GetLabOrderByID(int labOrderId)
+        public async Task<LabOrder> GetLabOrderByID(int labOrderId, string patientId)
         {
-            var labOrder = await _unitOfWork.LabOrderRepository.GetByID(labOrderId);
+            var labOrder = await _unitOfWork.LabOrderRepository.Get(filter: order => order.LabOrderId == labOrderId && order.PatientId == patientId).FirstOrDefaultAsync();
+
             return labOrder;
         }
 
-        public async Task<LabOrderDto> CreateLabOrder(LabOrderDto labOrderDTO)
+        public async Task<LabOrderDto> CreateLabOrder(LabOrderDto labOrderDto)
         {
-            var labOrderEntity = _mapper.Map<LabOrder>(labOrderDTO);
+            var labOrderEntity = _mapper.Map<LabOrder>(labOrderDto);
 
             await _unitOfWork.LabOrderRepository.Insert(labOrderEntity);
             await _unitOfWork.Save();

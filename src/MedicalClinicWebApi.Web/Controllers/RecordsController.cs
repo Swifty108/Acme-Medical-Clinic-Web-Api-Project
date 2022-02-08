@@ -1,4 +1,4 @@
-﻿using MedicalClinicWebApi.BLL.DTOs;
+﻿using MedicalClinicWebApi.BLLDTOs;
 using MedicalClinicWebApi.BLL.Interfaces;
 using MedicalClinicWebApi.Common.Interfaces;
 using Microsoft.AspNetCore.Http;
@@ -31,12 +31,10 @@ namespace MedicalClinicWebApi.Web.Controllers
 
             if (records == null)
                 return NotFound();
-
             else
             {
                 return Ok(records);
             }
-
         }
 
         // GET api/<AppointmentsController>/5
@@ -47,7 +45,6 @@ namespace MedicalClinicWebApi.Web.Controllers
 
             if (record == null)
                 return NotFound();
-
             else
             {
                 return Ok(record);
@@ -58,7 +55,6 @@ namespace MedicalClinicWebApi.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] RecordDto record)
         {
-
             if (record == null)
             {
                 return BadRequest("Record object is null!");
@@ -86,12 +82,10 @@ namespace MedicalClinicWebApi.Web.Controllers
             }
             catch (Exception e)
             {
-
                 return StatusCode(StatusCodes.Status500InternalServerError, new { Status = "Error", e.Message });
             }
 
             return Ok();
-
         }
 
         [HttpDelete]

@@ -1,4 +1,4 @@
-﻿using MedicalClinicWebApi.BLL.DTOs;
+﻿using MedicalClinicWebApi.BLLDTOs;
 using MedicalClinicWebApi.BLL.Interfaces;
 using MedicalClinicWebApi.Common.Interfaces;
 using Microsoft.AspNetCore.Http;
@@ -38,7 +38,6 @@ namespace MedicalClinicWebApi.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] AppointmentDto appointment)
         {
-
             if (!ModelState.IsValid)
             {
                 return BadRequest("Apppointment object is not valid!");
@@ -53,7 +52,6 @@ namespace MedicalClinicWebApi.Web.Controllers
             }
 
             return NotFound("That patient with the supplied patientId could not be found in the database!");
-
         }
 
         [HttpPut]
@@ -65,12 +63,10 @@ namespace MedicalClinicWebApi.Web.Controllers
             }
             catch (Exception e)
             {
-
                 return StatusCode(StatusCodes.Status500InternalServerError, new { Status = "Error", e.Message });
             }
 
             return Ok();
-
         }
 
         [HttpDelete]

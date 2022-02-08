@@ -1,5 +1,5 @@
 ﻿using Apartments.DAL.Interfaces;
-using MedicalClinicWebApi.BLL.DTOs;
+using MedicalClinicWebApi.BLLDTOs;
 using MedicalClinicWebApi.BLL.Interfaces;
 using MedicalClinicWebApi.DAL.Identity;
 using MedicalClinicWebApi.DAL.Models;
@@ -39,15 +39,14 @@ namespace MedicalClinicWebApi.BLL
         public async Task<AppointmentDto> CreateAppointment(AppointmentDto newAppointment)
         {
             var appointmentEntity = _mapper.Map<Appointment>(newAppointment);
-            
-             await _unitOfWork.AppointmentRepository.Insert(appointmentEntity);
+
+            await _unitOfWork.AppointmentRepository.Insert(appointmentEntity);
             await _unitOfWork.Save();
 
             var thisAppointment = await _unitOfWork.AppointmentRepository.Get(filter: appointment => appointment.PatientId == newAppointment.PatientId && appointment.Notes == newAppointment.Notes).FirstOrDefaultAsync();
 
             var newAppointmentDto = _mapper.Map<AppointmentDto>(thisAppointment);
             return newAppointmentDto;
-
         }
 
         public async Task UpdateAppointment(AppointmentDto appointment)

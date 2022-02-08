@@ -1,6 +1,6 @@
 ﻿using Apartments.DAL.Interfaces;
 using AutoMapper;
-using MedicalClinicWebApi.BLL.DTOs;
+using MedicalClinicWebApi.BLLDTOs;
 using MedicalClinicWebApi.BLL.Interfaces;
 using MedicalClinicWebApi.DAL.Models;
 using Microsoft.EntityFrameworkCore;
@@ -33,30 +33,24 @@ namespace MedicalClinicWebApi.BLL
             return labResult;
         }
 
-        public async Task<LabResultDto> CreateLabResult(LabResultDto labResultDTO)
+        public async Task<LabResultDto> CreateLabResult(LabResultDto labResultDto)
         {
-            var labOrder = await _unitOfWork.LabOrderRepository.Get(filter: u => u.LabOrderId == labResultDTO.LabOrderId).FirstOrDefaultAsync();
-
-            if (labOrder == null) return null;
-
-            var resultEntity = _mapper.Map<LabResult>(labResultDTO);
+            var resultEntity = _mapper.Map<LabResult>(labResultDto);
 
             await _unitOfWork.LabResultRepository.Insert(resultEntity);
             await _unitOfWork.Save();
 
-            var resultDTO = _mapper.Map<LabResultDto>(resultEntity);
+            var resultDto = _mapper.Map<LabResultDto>(resultEntity);
 
-            return resultDTO;
-
+            return resultDto;
         }
 
-        public async Task UpdateLabResult(LabResultDto labResultDTO)
+        public async Task UpdateLabResult(LabResultDto labResultDto)
         {
-            var labResultEntity = _mapper.Map<LabResult>(labResultDTO);
+            var labResultEntity = _mapper.Map<LabResult>(labResultDto);
 
             _unitOfWork.LabResultRepository.Update(labResultEntity);
             await _unitOfWork.Save();
-
         }
 
         public async Task DeleteLabResult(int labResultId)

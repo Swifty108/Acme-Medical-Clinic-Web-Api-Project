@@ -1,5 +1,5 @@
 ﻿using Apartments.DAL.Interfaces;
-using MedicalClinicWebApi.BLL.DTOs;
+using MedicalClinicWebApi.BLLDTOs;
 using MedicalClinicWebApi.BLL.Interfaces;
 using MedicalClinicWebApi.DAL.Identity;
 using MedicalClinicWebApi.DAL.Models;
@@ -25,7 +25,7 @@ namespace MedicalClinicWebApi.BLL
 
         public async Task<IEnumerable<Record>> GetAllRecords(string patientId)
         {
-            var records= await _unitOfWork.RecordRepository.Get(filter: u => u.PatientId == patientId, includeProperties: "Patient").ToListAsync();
+            var records = await _unitOfWork.RecordRepository.Get(filter: u => u.PatientId == patientId, includeProperties: "Patient").ToListAsync();
 
             return records.Count == 0 ? null : records;
         }
@@ -38,11 +38,11 @@ namespace MedicalClinicWebApi.BLL
 
         public async Task<RecordDto> CreateRecord(RecordDto record)
         {
-            //var apptDateTime = Convert.ToDateTime(appointmentDTO.AppointmentDateTime);
-            //appointmentDTO.AppointmentDateTime = apptDateTime;
+            //var apptDateTime = Convert.ToDateTime(appointmentDto.AppointmentDateTime);
+            //appointmentDto.AppointmentDateTime = apptDateTime;
 
             var recordEntity = _mapper.Map<Record>(record);
-            
+
             await _unitOfWork.RecordRepository.Insert(recordEntity);
             await _unitOfWork.Save();
 

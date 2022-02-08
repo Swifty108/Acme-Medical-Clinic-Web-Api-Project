@@ -1,4 +1,4 @@
-﻿using MedicalClinicWebApi.BLL.DTOs;
+﻿using MedicalClinicWebApi.BLLDTOs;
 using MedicalClinicWebApi.BLL.Interfaces;
 using MedicalClinicWebApi.Common.Interfaces;
 using Microsoft.AspNetCore.Http;
@@ -30,22 +30,19 @@ namespace MedicalClinicWebApi.Web.Controllers
 
             if (appointments == null)
                 return NotFound();
-
             else
             {
                 return Ok(appointments);
             }
-
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        [HttpGet("{id}/{patientid}")]
+        public async Task<IActionResult> Get(int id, string patientId)
         {
-            var labOrder = await _labOrdersLogic.GetLabOrderByID(id);
+            var labOrder = await _labOrdersLogic.GetLabOrderByID(id, patientId);
 
             if (labOrder == null)
                 return NotFound();
-
             else
             {
                 return Ok(labOrder);
@@ -55,7 +52,6 @@ namespace MedicalClinicWebApi.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] LabOrderDto labOrder)
         {
-
             if (labOrder == null)
             {
                 return BadRequest("Record object is null!");
@@ -82,12 +78,10 @@ namespace MedicalClinicWebApi.Web.Controllers
             }
             catch (Exception e)
             {
-
                 return StatusCode(StatusCodes.Status500InternalServerError, new { Status = "Error", e.Message });
             }
 
             return Ok();
-
         }
 
         [HttpDelete]

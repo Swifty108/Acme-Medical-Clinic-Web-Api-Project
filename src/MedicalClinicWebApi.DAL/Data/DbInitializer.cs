@@ -32,11 +32,9 @@ namespace MedicalClinicWebApi.DAL.Data
                                 Zipcode = "77777",
                                 PhoneNumber = "777-777-7777",
                                 Department = "Nephrology"
-   
                             },
             new Patient
                             {
-
                                 UserName = "emily.smith@patient.com",
                                 Email = "emily.smith@patient.com",
                                 FirstName = "Emily",
@@ -58,7 +56,7 @@ namespace MedicalClinicWebApi.DAL.Data
             {
                 using (var context = serviceScope.ServiceProvider.GetService<ApplicationDbContext>())
                 {
-                    context.Database.Migrate();        
+                    context.Database.Migrate();
                 }
             }
         }
@@ -116,7 +114,6 @@ namespace MedicalClinicWebApi.DAL.Data
 
                                 if (result.Succeeded)
                                 {
-
                                     if (user.Email.Contains("employee"))
                                     {
                                         await userManager.AddToRoleAsync(user as Employee, "Employee");
@@ -125,7 +122,7 @@ namespace MedicalClinicWebApi.DAL.Data
                                     {
                                         await userManager.AddToRoleAsync(user as Patient, "Patient");
                                     }
-                                }                          
+                                }
                             }
                         }
                     }

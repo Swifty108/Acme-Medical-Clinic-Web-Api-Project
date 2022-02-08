@@ -2,7 +2,7 @@
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MedicalClinicWebApi.BLL.DTOs
+namespace MedicalClinicWebApi.BLLDTOs
 {
     public class LabResultDto
     {
@@ -11,6 +11,7 @@ namespace MedicalClinicWebApi.BLL.DTOs
 
         [Column(TypeName = "SmallDateTime")]
         public DateTime ResultsDate { get; set; }
+
         public int LabOrderId { get; set; }
         public LabOrder LabOrder { get; set; }
     }

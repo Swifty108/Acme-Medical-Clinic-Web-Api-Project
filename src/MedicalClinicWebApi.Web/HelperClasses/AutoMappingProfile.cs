@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using MedicalClinicWebApi.BLL.DTOs;
+using MedicalClinicWebApi.BLLDTOs;
 using MedicalClinicWebApi.DAL.Models;
 
 namespace Apartments.BLL.HelperClasses

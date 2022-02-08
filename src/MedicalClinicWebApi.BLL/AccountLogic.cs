@@ -1,5 +1,4 @@
-﻿
-using MedicalClinicWebApi.BLL.Interfaces;
+﻿using MedicalClinicWebApi.BLL.Interfaces;
 using MedicalClinicWebApi.BLL.Models;
 using MedicalClinicWebApi.DAL.Identity;
 using MedicalClinicWebApi.DAL.Models;
@@ -72,7 +71,7 @@ namespace MedicalClinicWebApi.BLL
                 await _userManager.CreateAsync(user, model.Password);
                 await _userManager.AddToRoleAsync(user, "Patient");
                 var userId = await _userManager.GetUserIdAsync(user);
-                
+
                 return userId;
             }
             catch (Exception)

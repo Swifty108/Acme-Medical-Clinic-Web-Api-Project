@@ -1,4 +1,4 @@
-﻿using MedicalClinicWebApi.BLL.DTOs;
+﻿using MedicalClinicWebApi.BLLDTOs;
 using MedicalClinicWebApi.BLL.Interfaces;
 using MedicalClinicWebApi.Common.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -20,47 +20,22 @@ namespace MedicalClinicWebApi.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get(int labOrderId)
+        public async Task<IActionResult> Get(int labOrderId, string patientId)
         {
-            var labResult = await _labResultsLogic.GetLabResult(labOrderId);
-
-            if (labResult == null)
-                return NotFound();
-            else
-            {
-                return Ok(labResult);
-            }
-        }
-
-        [HttpGet("{labresultid}")]
-        public async Task<IActionResult> GetByID(int labResultId)
-        {
-            var labOrder = await _labResultsLogic.GetLabResultByID(labResultId);
-
-            if (labOrder == null)
-                return NotFound();
-            else
-            {
-                return Ok(labOrder);
-            }
+            var labOrder = await _labOrdersLogic.GetLabOrderByID(labOrderId, patientId);
+            return labOrder != null ? Ok(labOrder) : NotFound();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] LabResultDto labResultDTO)
+        public async Task<IActionResult> Post([FromBody] LabResultDto labResultDto, int labOrderId)
         {
-            if (labResultDTO == null)
+            if (!ModelState.IsValid)
             {
-                return BadRequest("Result object is null!");
+                return BadRequest("Result object is invalid!");
             }
 
-            var labOrder = _labOrdersLogic.GetLabOrderByID(labResultDTO.LabOrderId);
-
-            if (labOrder == null)
-            {
-                return NotFound("That laborder could not be found!");
-            }
-
-            var returnedLabResult = await _labResultsLogic.CreateLabResult(labResultDTO);
+            labResultDto.LabOrderId = labOrderId;
+            var returnedLabResult = await _labResultsLogic.CreateLabResult(labResultDto);
 
             return Created("", returnedLabResult);
         }
