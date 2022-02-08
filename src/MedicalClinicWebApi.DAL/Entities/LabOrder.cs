@@ -8,17 +8,18 @@ namespace MedicalClinicWebApi.DAL.Models
     {
         [Key]
         public int LabOrderId { get; set; }
+
         public string LabName { get; set; }
 
         [Column(TypeName = "SmallDateTime")]
         public DateTime OrderDate { get; set; }
-        public LabResult Result { get; set; }
+
+        public string Result { get; set; }
 
         [Required]
         [ForeignKey(nameof(Patient))]
         public string PatientId { get; set; }
 
         public Patient Patient { get; set; }
-
     }
 }

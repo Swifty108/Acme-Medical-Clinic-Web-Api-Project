@@ -13,7 +13,6 @@ namespace Apartments.BLL.HelperClasses
             CreateMap<AppointmentDto, Appointment>().ReverseMap();
             CreateMap<RecordDto, Record>().ReverseMap();
             CreateMap<LabOrderDto, LabOrder>().ReverseMap();
-            CreateMap<LabResultDto, LabResult>().ReverseMap();
         }
     }
 }

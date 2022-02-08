@@ -13,7 +13,7 @@ namespace MedicalClinicWebApi.BLLDTOs
         [Column(TypeName = "SmallDateTime")]
         public DateTime OrderDate { get; set; }
 
-        public LabResult Result { get; set; }
+        public string Result { get; set; }
         public string PatientId { get; set; }
     }
 }

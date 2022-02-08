@@ -17,7 +17,6 @@ namespace MedicalClinicWebApi.DAL.Data
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<LabOrder> LabOrders { get; set; }
-        public DbSet<LabOrder> LabResults { get; set; }
         public DbSet<Record> Records { get; set; }
     }
 }

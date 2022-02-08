@@ -74,7 +74,6 @@ namespace MedicalClinicWebApi.Web
             services.AddTransient<IRecordsLogic, RecordsLogic>();
             services.AddTransient<IAppointmentsLogic, AppointmentsLogic>();
             services.AddTransient<ILabOrdersLogic, LabOrersLogic>();
-            services.AddTransient<ILabResultsLogic, LabResultsLogic>();
 
             services.AddMediatR(typeof(Startup));
             services.AddHttpContextAccessor();
