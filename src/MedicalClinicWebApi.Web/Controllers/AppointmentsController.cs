@@ -25,49 +25,35 @@ namespace MedicalClinicWebApi.Web.Controllers
         public async Task<IActionResult> Get(string patientId)
         {
             var appointments = await _appointmentsLogic.GetAllApointments(patientId);
-
-            if (appointments == null)
-                return NotFound();
-
-
-            return Ok(appointments);
-
-
+            return appointments != null ? Ok(appointments) : NotFound();
         }
 
         [HttpGet("{appointmentid:int}")]
         public async Task<IActionResult> Get(int appointmentId)
         {
             var appointment = await _appointmentsLogic.GetAppointmentByID(appointmentId);
-
-            if (appointment == null)
-                return NotFound();
-
-            else
-            {
-                return Ok(appointment);
-            }
+            return appointment != null ? Ok(appointment) : NotFound();
         }
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] AppointmentDto appointment)
         {
 
-            if (appointment == null)
+            if (!ModelState.IsValid)
             {
-                return BadRequest("Apppointment object is null!");
+                return BadRequest("Apppointment object is not valid!");
             }
 
             var patientExists = await _userService.FindUserByID(appointment.PatientId);
 
-            if (patientExists == null)
+            if (patientExists != null)
             {
-                return NotFound("That patient with the supplied patientId could not be found in the database!");
+                var newAppointment = await _appointmentsLogic.CreateAppointment(appointment);
+                return Created("", newAppointment);
             }
 
-            var newAppointment = await _appointmentsLogic.CreateAppointment(appointment);
+            return NotFound("That patient with the supplied patientId could not be found in the database!");
 
-            return Created("", newAppointment);
         }
 
         [HttpPut]
