@@ -1,0 +1,2 @@
+//var apptDateTime = Convert.ToDateTime(appointmentDto.AppointmentDateTime);
+//appointmentDto.AppointmentDateTime = apptDateTime;

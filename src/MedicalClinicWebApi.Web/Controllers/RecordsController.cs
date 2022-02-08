@@ -23,41 +23,26 @@ namespace MedicalClinicWebApi.Web.Controllers
             _userService = userService;
         }
 
-        // GET: api/<AppointmentsController>
         [HttpGet]
         public async Task<IActionResult> Get(string patientId)
         {
             var records = await _recordsLogic.GetAllRecords(patientId);
-
-            if (records == null)
-                return NotFound();
-            else
-            {
-                return Ok(records);
-            }
+            return records != null ? Ok(records) : NotFound();
         }
 
-        // GET api/<AppointmentsController>/5
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int recordId)
+        [HttpGet("{id}/{patientid}")]
+        public async Task<IActionResult> Get(int id, string patientId)
         {
-            var record = await _recordsLogic.GetRecordByID(recordId);
-
-            if (record == null)
-                return NotFound();
-            else
-            {
-                return Ok(record);
-            }
+            var record = await _recordsLogic.GetRecordByID(id, patientId);
+            return record != null ? Ok(record) : NotFound();
         }
 
-        // POST api/<AppointmentsController>
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] RecordDto record)
         {
-            if (record == null)
+            if (!ModelState.IsValid)
             {
-                return BadRequest("Record object is null!");
+                return BadRequest("Record object is invalid!");
             }
 
             var patientExists = await _userService.FindUserByID(record.PatientId);
@@ -72,7 +57,6 @@ namespace MedicalClinicWebApi.Web.Controllers
             return Created("", returnedRecord);
         }
 
-        // PUT api/<AppointmentsController>/5
         [HttpPut]
         public async Task<IActionResult> Put([FromBody] RecordDto record)
         {
@@ -88,10 +72,10 @@ namespace MedicalClinicWebApi.Web.Controllers
             return Ok();
         }
 
-        [HttpDelete]
-        public async Task<ActionResult> Delete(int recordId)
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(int id)
         {
-            await _recordsLogic.DeleteRecord(recordId);
+            await _recordsLogic.DeleteRecord(id);
 
             return Ok();
         }

@@ -30,17 +30,14 @@ namespace MedicalClinicWebApi.BLL
             return records.Count == 0 ? null : records;
         }
 
-        public async Task<Record> GetRecordByID(int recordId)
+        public async Task<Record> GetRecordByID(int recordId, string patientId)
         {
-            var record = await _unitOfWork.RecordRepository.GetByID(recordId);
+            var record = await _unitOfWork.RecordRepository.Get(filter: record => record.RecordId == recordId && record.PatientId == patientId).FirstOrDefaultAsync();
             return record;
         }
 
         public async Task<RecordDto> CreateRecord(RecordDto record)
         {
-            //var apptDateTime = Convert.ToDateTime(appointmentDto.AppointmentDateTime);
-            //appointmentDto.AppointmentDateTime = apptDateTime;
-
             var recordEntity = _mapper.Map<Record>(record);
 
             await _unitOfWork.RecordRepository.Insert(recordEntity);
@@ -61,7 +58,7 @@ namespace MedicalClinicWebApi.BLL
 
         public async Task DeleteRecord(int recordId)
         {
-            await _unitOfWork.AppointmentRepository.Delete(recordId);
+            await _unitOfWork.RecordRepository.Delete(recordId);
             await _unitOfWork.Save();
         }
     }

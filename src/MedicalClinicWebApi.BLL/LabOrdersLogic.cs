@@ -30,7 +30,6 @@ namespace MedicalClinicWebApi.BLL
         public async Task<LabOrder> GetLabOrderByID(int labOrderId, string patientId)
         {
             var labOrder = await _unitOfWork.LabOrderRepository.Get(filter: order => order.LabOrderId == labOrderId && order.PatientId == patientId).FirstOrDefaultAsync();
-
             return labOrder;
         }
 

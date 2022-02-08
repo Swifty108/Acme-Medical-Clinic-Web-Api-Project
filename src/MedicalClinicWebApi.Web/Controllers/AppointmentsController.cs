@@ -69,10 +69,10 @@ namespace MedicalClinicWebApi.Web.Controllers
             return Ok();
         }
 
-        [HttpDelete]
-        public async Task<ActionResult> Delete(int appointmentId)
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(int id)
         {
-            await _appointmentsLogic.DeleteAppointment(appointmentId);
+            await _appointmentsLogic.DeleteAppointment(id);
 
             return Ok();
         }

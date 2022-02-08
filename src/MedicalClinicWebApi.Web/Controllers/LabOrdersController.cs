@@ -26,14 +26,8 @@ namespace MedicalClinicWebApi.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Get(string patientId)
         {
-            var appointments = await _labOrdersLogic.GetAllLabOrders(patientId);
-
-            if (appointments == null)
-                return NotFound();
-            else
-            {
-                return Ok(appointments);
-            }
+            var labOrders = await _labOrdersLogic.GetAllLabOrders(patientId);
+            return labOrders != null ? Ok(labOrders) : NotFound();
         }
 
         [HttpGet("{id}/{patientid}")]
