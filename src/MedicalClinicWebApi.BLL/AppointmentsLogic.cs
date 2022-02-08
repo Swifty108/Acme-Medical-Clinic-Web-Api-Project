@@ -30,9 +30,9 @@ namespace MedicalClinicWebApi.BLL
             return appointments.Count == 0 ? null : appointments;
         }
 
-        public async Task<Appointment> GetAppointmentByID(int appointmentId)
+        public async Task<Appointment> GetAppointmentByID(int appointmentId, string patientId)
         {
-            var appointment = await _unitOfWork.AppointmentRepository.GetByID(appointmentId);
+            var appointment = await _unitOfWork.AppointmentRepository.Get(filter: u => u.AppointmentId == appointmentId && u.PatientId == patientId, includeProperties: "Patient").FirstOrDefaultAsync();
             return appointment;
         }
 

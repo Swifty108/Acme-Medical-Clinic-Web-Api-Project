@@ -72,7 +72,7 @@ namespace MedicalClinicWebApi.Web.Controllers
             return Ok();
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
             await _labOrdersLogic.DeleteLabOrder(id);

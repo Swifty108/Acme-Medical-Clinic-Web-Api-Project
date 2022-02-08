@@ -28,10 +28,10 @@ namespace MedicalClinicWebApi.Web.Controllers
             return appointments != null ? Ok(appointments) : NotFound();
         }
 
-        [HttpGet("{appointmentid:int}")]
-        public async Task<IActionResult> Get(int appointmentId)
+        [HttpGet("{id}/{patientid}")]
+        public async Task<IActionResult> Get(int id, string patientId)
         {
-            var appointment = await _appointmentsLogic.GetAppointmentByID(appointmentId);
+            var appointment = await _appointmentsLogic.GetAppointmentByID(id, patientId);
             return appointment != null ? Ok(appointment) : NotFound();
         }
 

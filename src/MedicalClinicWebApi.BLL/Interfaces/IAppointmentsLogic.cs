@@ -9,7 +9,7 @@ namespace MedicalClinicWebApi.BLL.Interfaces
     {
         Task<IEnumerable<Appointment>> GetAllApointments(string patientId);
 
-        Task<Appointment> GetAppointmentByID(int appointmentId);
+        Task<Appointment> GetAppointmentByID(int appointmentId, string patientId);
 
         Task<AppointmentDto> CreateAppointment(AppointmentDto appointmentDto);
 
