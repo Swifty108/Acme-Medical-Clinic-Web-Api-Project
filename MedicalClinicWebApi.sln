@@ -11,7 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicalClinicWebApi.Common"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1652745E-1DD5-45B3-A2DD-9C2641640337}"
 	ProjectSection(SolutionItems) = preProject
-		Backups.txt = Backups.txt
 		Directory.Build.props = Directory.Build.props
 	EndProjectSection
 EndProject
