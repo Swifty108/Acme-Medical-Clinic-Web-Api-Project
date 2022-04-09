@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System.Threading.Tasks;
 
+//Todo: Implement logging framework
 
 namespace MedicalClinicWebApi.Web.Controllers
 {
@@ -18,6 +19,7 @@ namespace MedicalClinicWebApi.Web.Controllers
     {
         private readonly IUserService _userService;
         private readonly IAccountLogic _accountLogic;
+
         public AccountController(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration, IUserService userService, IAccountLogic auth)
         {
             _userService = userService;
@@ -32,7 +34,6 @@ namespace MedicalClinicWebApi.Web.Controllers
 
             if (user != null)
                 return StatusCode(StatusCodes.Status500InternalServerError, new { Status = "Error", Message = "User already exists!" });
-
             else
             {
                 var userId = await _accountLogic.RegisterEmployee(model);
@@ -40,7 +41,6 @@ namespace MedicalClinicWebApi.Web.Controllers
                 return userId != null ? Ok(new { Status = "Success", Message = "Employee account registered successfully!", UserId = userId }) : StatusCode(StatusCodes.Status500InternalServerError, new { Status = "Error", Message = "Employee account registration failed!Please check user details and try again." });
             }
         }
-
 
         [HttpPost]
         [Route("registerpatient")]
@@ -50,14 +50,12 @@ namespace MedicalClinicWebApi.Web.Controllers
 
             if (user != null)
                 return StatusCode(StatusCodes.Status500InternalServerError, new { Status = "Error", Message = "User already exists!" });
-
             else
             {
                 var userId = await _accountLogic.RegisterPatient(model);
 
-                return userId != null ? Ok(new { Status = "Success", Message = "Patient account registered successfully!", UserId = userId}) : StatusCode(StatusCodes.Status500InternalServerError, new { Status = "Error", Message = "Patient account registration failed! Please check user details and try again." });
+                return userId != null ? Ok(new { Status = "Success", Message = "Patient account registered successfully!", UserId = userId }) : StatusCode(StatusCodes.Status500InternalServerError, new { Status = "Error", Message = "Patient account registration failed! Please check user details and try again." });
             }
         }
-
     }
 }
