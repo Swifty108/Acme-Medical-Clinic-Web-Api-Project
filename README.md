@@ -16,6 +16,5 @@ There are two primary roles in the application, `Employee`, and `Patient`. And t
 
 **Design Patterns and Architectural Patterns**: Generic repository pattern, Unit of work pattern, 3-layered architecture.
 
-**Visual Studio Extensions Used**: Productivity Power Tools, CodeMaid, Github extension for Visual Studio 2019, and Snippet Designer. 
+**Visual Studio Extensions**: Productivity Power Tools, CodeMaid, Github extension for Visual Studio 2019, and Snippet Designer. 
 
-**Android Apps for Time Management**: Microsoft To-Do app, Trello app, and the Pomodoro app
