@@ -18,3 +18,4 @@ There are two primary roles in the application, `Employee`, and `Patient`. And t
 
 **Visual Studio Extensions**: Productivity Power Tools, CodeMaid, Github extension for Visual Studio 2019, and Snippet Designer. 
 
+[Live Demo](https://medicalclinicwebapi.azurewebsites.net/swagger/index.html)
